@@ -47,3 +47,5 @@ ON culc_date.culc_id = result_date.culc_id ;
 
 INSERT INTO result_date  ( result_date , culc_id )
 	VALUES ( '2022-09-29' , 'Y1M1' );
+
+

@@ -9,7 +9,7 @@ public class CulcDate {
 	private String culcId;
 	private int culcNumYear;
 	private int culcNumMonth;
-	private int culcNumDate;
+	private int culcNumDay;
 	private int resultId;
 	private LocalDate resultDate;
 }
