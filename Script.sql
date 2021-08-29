@@ -33,4 +33,17 @@ ALTER TABLE result_date
 	ADD FOREIGN KEY (culc_id) REFERENCES culc_date (culc_id);
 	
 
-INSERT INTO culc_date　　
+INSERT INTO culc_date (culc_id , culc_num_year , culc_num_month , culc_num_day )
+	VALUES ( 'Y1M1' , 1 , 1 , 0 );　
+	
+SELECT * FROM culc_date  ;
+
+SELECT 
+  *
+FROM
+ culc_date
+LEFT JOIN result_date
+ON culc_date.culc_id = result_date.culc_id ;	
+
+INSERT INTO result_date  ( result_date , culc_id )
+	VALUES ( '2022-09-29' , 'Y1M1' );
