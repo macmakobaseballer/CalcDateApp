@@ -7,7 +7,7 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+	<link rel="stylesheet" href="/css/list.css">
     <title></title>
   </head>
   <body>
@@ -30,24 +30,30 @@
 	  <button class="btn btn-outline-light my-2 my-sm-0" type="submit">ログアウト</button>	  
 	</nav>
 	
-	<table class="table table-striped">
-	  <thead>
-	    <tr>
-	      <th scope="col">No.</th>
-	      <th scope="col">計算式id</th>
-	      <th scope="col">計算式(Y/M/D)</th>
-	      <th scope="col">計算結果</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <tr th:each="item:${culcList}">
-	      <th scope="row" th:text="${item.resultId}"></th>
-	      <td th:text="${item.culcId}"></td>
-	      <td th:text="${item.culcNumYear}+'/'+${item.culcNumMonth}+'/'+${item.culcNumDay}"></td>
-	      <td th:text="${item.resultDate}"></td>
-	    </tr>
-	  </tbody>
-	</table>
+	<div class="mt-4 container">
+	 <div class="container bg-light">
+	 <h1 class=h5>日付計算</h1>	
+	 
+	 </div>
+		<table class="table">
+		  <thead>
+		    <tr>
+		      <th scope="col">No.</th>
+		      <th scope="col">計算式ID</th>
+		      <th scope="col">計算式(Y/M/D)</th>
+		      <th scope="col">計算結果</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr th:each="item:${culcList}">
+		      <th scope="row" th:text="${item.resultId}"></th>
+		      <td th:text="${item.culcId}"></td>
+		      <td th:text="${item.culcNumYear}+'/'+${item.culcNumMonth}+'/'+${item.culcNumDay}"></td>
+		      <td th:text="${item.resultDate}"></td>
+		    </tr>
+		  </tbody>
+		</table>
+	</div>
 	
 	     
     
