@@ -42,10 +42,20 @@ SELECT
   *
 FROM
  culc_date
-LEFT JOIN result_date
-ON culc_date.culc_id = result_date.culc_id ;	
+;
+	
 
 INSERT INTO result_date  ( result_date , culc_id )
 	VALUES ( '2022-09-29' , 'Y1M1' );
+
+SHOW CREATE TABLE result_date ;
+
+ALTER TABLE result_date DROP FOREIGN KEY result_date_ibfk_1; 
+
+ALTER TABLE culc_date DROP PRIMARY KEY;
+
+ALTER TABLE culc_date 
+	ADD result_id INT AUTO_INCREMENT PRIMARY KEY FIRST;
+
 
 
