@@ -33,7 +33,7 @@
 	<div class="mt-4 container">
 	<div class="bg-primary p-2 text-white bg-opacity-75">
 	 <h1 class=h5>日付計算するよ</h1>	
-	 <form method="post" action="/culc" th:objet="${baseDateForm}">
+	 <form method="post" action="/culc" th:object="${baseDateForm}">
 		 <div class="mb-3 form-group col-md-8">
 	  		<label for="formGroupBaseDate" class="form-label">計算基準日</label>
 	  		<input type="text" name="baseDate" class="form-control" th:field="*{baseDate}" placeholder="yyyy/MM/dd">
@@ -57,7 +57,7 @@
 		      <th scope="row" th:text="${item.resultId}"></th>
 		      <td th:text="${item.culcId}"></td>
 		      <td th:text="${item.culcNumYear}+'/'+${item.culcNumMonth}+'/'+${item.culcNumDay}"></td>
-		      <td th:text="*{#temporals.format(resultDate,'YYYY/MM/dd')}"></td>
+		      <td th:text="*{#temporals.format(itemresultDate,'YYYY/MM/dd')}"></td>
 		    </tr>
 		  </tbody>
 		</table>
