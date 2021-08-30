@@ -9,8 +9,6 @@
 		 *
 		FROM
 		 culc_date
-		LEFT JOIN result_date
-		ON culc_date.culc_id = result_date.culc_id		
 	</select>
 </mapper>
 
