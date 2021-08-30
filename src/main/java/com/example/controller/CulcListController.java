@@ -32,4 +32,5 @@ public class CulcListController {
 		return "list";
 	}
 
+
 }
