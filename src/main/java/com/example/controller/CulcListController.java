@@ -9,9 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.entity.CulcDate;
 import com.example.form.BaseDateForm;
@@ -41,8 +41,8 @@ public class CulcListController {
 		return "list";
 	}
 
-	@PostMapping("")
-	public String postCulcResult(@DateTimeFormat(pattern="yyyy/MM/dd")@RequestParam("baseDate")BaseDateForm baseDateForm ,Model model) {
+	@PostMapping("/{baseDate}")
+	public String postCulcResult(  @DateTimeFormat(pattern="yyyy/MM/dd")@PathVariable BaseDateForm baseDateForm,Model model) {
 		
 		//日付の加算メソッドを呼び出し
 		LocalDate resultDate = culcService.culcDate(baseDateForm.getBaseDate());
