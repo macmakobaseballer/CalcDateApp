@@ -10,9 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.example.entity.CulcDate;
 import com.example.form.BaseDateForm;
@@ -26,11 +24,11 @@ public class CulcListController {
 	@Autowired
 	private CulcService culcService;
 	
-	@GetMapping("")
-	public String getCulcList(@ModelAttribute BaseDateForm baseDateForm ,Model model) {
+	@GetMapping
+	public String getCulcList(@ModelAttribute BaseDateForm form ,Model model) {
 		
 		//baseDateにデフォルトで値をセット
-		baseDateForm.setBaseDate(LocalDate.now());
+		form.setBaseDate(LocalDate.now());
 		
 		//計算一覧を取得
 		List<CulcDate> culcList = culcService.getCulcAll();
@@ -42,16 +40,24 @@ public class CulcListController {
 		return "list";
 	}
 
-	@PostMapping("/{baseDate}")
-	@ResponseBody
-	public String postCulcResult(  @DateTimeFormat(pattern="yyyy/MM/dd") @RequestBody BaseDateForm baseDateForm ,Model model) {
+	@PostMapping
+	public String postCulcResult(  @DateTimeFormat(pattern="yyyy/MM/dd") @ModelAttribute BaseDateForm form ,Model model) {
 		
 		
-		//日付の加算メソッドを呼び出し
-		LocalDate resultDate = culcService.culcDate(baseDateForm.getBaseDate());
+		System.out.println(form);
+		
+		
+		//計算一覧を取得
+		List<CulcDate> culcList = culcService.getCulcAll();
+		
+		//getCulc
+		culcList = culcService.getCulcResultAll(culcList,form.getBaseDate());
+		
+		
+		System.out.println(culcList);
 		
 		//Modelに登録
-		model.addAttribute("resultDate", resultDate);
+		model.addAttribute("culcList", culcList);
 
 		//list.htmlを返す
 		return "list";
