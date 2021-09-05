@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="/css/list.css">
+    <title></title>
+  </head>
+  <body>
+  	<!-- navar -->
+  	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	  <a class="navbar-brand" href="#">日付計算アプリ</a>
+	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+	    <span class="navbar-toggler-icon"></span>
+	  </button>
+	  <div class="collapse navbar-collapse" id="navbarNav">
+	    <ul class="navbar-nav">
+	      <li class="nav-item active">
+	        <a class="nav-link" href="/calc">ホーム</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="#">計算式登録<span class="sr-only">(current)</span></a>
+	      </li>
+	    </ul>
+	  </div>
+	  <button class="btn btn-outline-light my-2 my-sm-0" type="submit">ログアウト</button>	  
+	</nav>
+	
+	<!-- 計算式の登録フォーム -->
+	<div class="mt-4 container">
+	<div class="bg-primary p-2 text-white bg-opacity-75">
+	 <h1 class=h5>計算式登録するよ</h1>	
+	 <form th:method="post"  th:action="@{/calc/regist}">　<!-- th:object="${calcRegistForm}" -->
+		 <div class="mb-2 form-group col-md-6">
+	  		<label for="formGroupCalcRegist" class="form-label">計算式ID</label>
+	  		<input type="text" name="calcRegistForm" class="form-control" placeholder="#Y#M#D"><!-- th:field="*{calcId}"  -->
+		</div>
+		<div class="mb-2 form-group col-md-6">
+	  		<label for="formGroupCalcRegist" class="form-label">計算年</label>
+	  		<input type="text" name="calcRegistForm" class="form-control"  placeholder="yy"><!-- th:field="*{calcNumYear}" -->
+		</div>
+		<div class="mb-2 form-group col-md-6">
+	  		<label for="formGroupCalcRegist" class="form-label">計算月</label>
+	  		<input type="text" name="calcRegistForm" class="form-control"  placeholder="mm"><!-- th:field="*{calcNumMonth}" -->
+		</div>
+		<div class="mb-2 form-group col-md-6">
+	  		<label for="formGroupCalcRegist" class="form-label">計算日</label>
+	  		<input type="text" name="calcRegistForm" class="form-control"  placeholder="dd"><!-- th:field="*{calcNum}" -->
+		</div>
+		<div class="col-md-4">
+	  		<button class="btn btn-outline-light my-2 my-sm-0" type="submit">登録</button>	
+		</div>
+	 </form>
+	</div>
+	</div>
+	
+
+</body>
+</html>
