@@ -34,7 +34,7 @@
 	<div class="mt-4 container">
 	<div class="bg-primary p-2 text-white bg-opacity-75">
 	 <h1 class=h5>計算式登録するよ</h1>	
-	 　<form th:method="post" th:object="${calcRegistForm}"  th:action="@{/calc/regist}">　
+	 　<form th:method="post" th:object="${calcRegistForm}"  th:action="@{/calc/register}">　
 		 <div class="mb-2 form-group col-md-6">
 	  		<label for="formGroupCalcRegist" class="form-label">計算式ID</label>
 	  		<input type="text" name="calcRegistForm" th:field="*{calcId}"  class="form-control" placeholder="#Y#M#D">

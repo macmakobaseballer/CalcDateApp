@@ -10,6 +10,21 @@
 		FROM
 		 calc_date
 	</select>
+	
+	<insert id="insertCalcOne">
+		INSERT INTO calc_date(
+			calc_id,
+			calc_num_year,
+			calc_num_month,
+			calc_num_day
+			)
+		VALUES(
+			#{calcId},
+			#{calcNumYear},
+			#{calcNumMonth},
+			#{calcNumDay}
+			)	
+	</insert>
 </mapper>
 
 	<!--  -->

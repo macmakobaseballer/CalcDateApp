@@ -24,7 +24,7 @@ public class CalcRegisterController {
 	ModelMapper modelMapper;
 
 	@GetMapping("/register")
-	public String getCalcRegist(@ModelAttribute CalcRegistForm form) {
+	public String getCalcRegist() {
 		return "calcregist" ;
 	}
 	
@@ -37,6 +37,8 @@ public class CalcRegisterController {
 		//計算式の1件登録を実行
 		calcService.insertCalcOne(calcDate);
 		
-		return "redirect:/calc";
+		System.out.println(calcDate);
+		
+		return "redirect:";
 	}
 }
