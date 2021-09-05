@@ -16,18 +16,15 @@ public class CalcService {
 	@Autowired
 	private CalcMapper calcMapper ;
 	
+	//一覧取得
 	public List <CalcDate> getcalcAll(){
 		return calcMapper.selectAll();
 	}
 	
+	//計算ロジックの実行メソッド
 	public List <CalcDate> getcalcResultAll(List <CalcDate> calcList ,LocalDate baseDate){
 		
 		//System.out.println(baseDate);
-		/*
-		LocalDate resultDate = baseDate.plusYears(1);
-		resultDate = resultDate.plusMonths(1);
-		resultDate = resultDate.plusDays(0);
-		*/
 		
 		List <CalcDate> calcResultAll = new  ArrayList<>() ;
 				
@@ -50,7 +47,11 @@ public class CalcService {
 		
 		return calcResultAll;
 				
-		
+	}
+	
+	//計算式の登録
+	public void insertCalcOne(CalcDate calcDate) {
+		calcMapper.insertCalcOne(calcDate);
 	}
 	
 }
