@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.example.entity.CulcDate;
+import com.example.entity.CalcDate;
 
 
 @Mapper
-public interface CulcMapper {
+public interface CalcMapper {
 	
 	//全件取得
-	public List <CulcDate> selectAll();
+	public List <CalcDate> selectAll();
 
 }
