@@ -25,6 +25,17 @@
 			#{calcNumDay}
 			)	
 	</insert>
+	
+	<update id="updateCalcOne">
+		Update calc_date
+		SET 
+		  calc_id = #{calcId},
+		  calc_num_year = #{calcNumYear},
+		  calc_num_month = #{calcNumMonth},
+		  calc_num_day = #{calcNumDay}
+		WHERE
+		  result_id = #{resultId}
+	</update>
 </mapper>
 
 	<!--  -->
