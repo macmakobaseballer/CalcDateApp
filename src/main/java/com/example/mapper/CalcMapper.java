@@ -13,4 +13,6 @@ public interface CalcMapper {
 	//全件取得
 	public List <CalcDate> selectAll();
 
+	//計算式1件登録
+	public void insertCalcOne(CalcDate calcDate);
 }
