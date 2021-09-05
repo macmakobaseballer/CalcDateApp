@@ -36,7 +36,7 @@
 	 <form th:method="post" th:object="${baseDateForm}" th:action="@{/calc}">
 		 <div class="mb-3 form-group col-md-8">
 	  		<label for="formGroupBaseDate" class="form-label">計算基準日</label>
-	  		<input type="text" name="baseDateForm" class="form-control" th:field="*{baseDate}" placeholder="yyyy/MM/dd">
+	  		<input type="text" name="baseDate" class="form-control" th:field="*{baseDate}" placeholder="yyyy/MM/dd">
 		</div>
 		<div class="col-md-4">
 	  		<button class="btn btn-outline-light my-2 my-sm-0" type="submit">計算実行</button>	
