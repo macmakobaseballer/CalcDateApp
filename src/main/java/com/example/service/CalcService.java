@@ -22,7 +22,7 @@ public class CalcService {
 	
 	public List <CalcDate> getcalcResultAll(List <CalcDate> calcList ,LocalDate baseDate){
 		
-		System.out.println(baseDate);
+		//System.out.println(baseDate);
 		/*
 		LocalDate resultDate = baseDate.plusYears(1);
 		resultDate = resultDate.plusMonths(1);
@@ -35,17 +35,17 @@ public class CalcService {
 		for( CalcDate calcDate : calcList ) {
 			
 			//計算実行
-			LocalDate resultDate = baseDate.plusYears(1);
-			resultDate = resultDate.plusMonths(1);
-			resultDate = resultDate.plusDays(0);
+			LocalDate resultDate = baseDate.plusYears(calcDate.getCalcNumYear());
+			resultDate = resultDate.plusMonths(calcDate.getCalcNumMonth());
+			resultDate = resultDate.plusDays(calcDate.getCalcNumDay());
 			
-			//setterでresultDateの値をセット
-			calcDate.setResultDate(resultDate);
-			
+			//calcDatesetterでresultDateの値をセット
+			calcDate.setResultDate(resultDate);		
 		
-			//ArrayListのcalcresultAllに計算後のresultDateを格納
+			//ArrayListのcalcresultAllに計算後のcalcDateを格納
 			calcResultAll.add(calcDate);
 		
+			//System.out.println(calcResultAll);
 		}
 		
 		return calcResultAll;
