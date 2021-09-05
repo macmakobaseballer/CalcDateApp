@@ -34,22 +34,22 @@
 	<div class="mt-4 container">
 	<div class="bg-primary p-2 text-white bg-opacity-75">
 	 <h1 class=h5>計算式登録するよ</h1>	
-	 <form th:method="post"  th:action="@{/calc/regist}">　<!-- th:object="${calcRegistForm}" -->
+	 　<form th:method="post" th:object="${calcRegistForm}"  th:action="@{/calc/regist}">　
 		 <div class="mb-2 form-group col-md-6">
 	  		<label for="formGroupCalcRegist" class="form-label">計算式ID</label>
-	  		<input type="text" name="calcRegistForm" class="form-control" placeholder="#Y#M#D"><!-- th:field="*{calcId}"  -->
+	  		<input type="text" name="calcRegistForm" th:field="*{calcId}"  class="form-control" placeholder="#Y#M#D">
 		</div>
 		<div class="mb-2 form-group col-md-6">
 	  		<label for="formGroupCalcRegist" class="form-label">計算年</label>
-	  		<input type="text" name="calcRegistForm" class="form-control"  placeholder="yy"><!-- th:field="*{calcNumYear}" -->
+	  		<input type="text" name="calcRegistForm" th:field="*{calcNumYear}" class="form-control"  placeholder="yy">
 		</div>
 		<div class="mb-2 form-group col-md-6">
 	  		<label for="formGroupCalcRegist" class="form-label">計算月</label>
-	  		<input type="text" name="calcRegistForm" class="form-control"  placeholder="mm"><!-- th:field="*{calcNumMonth}" -->
+	  		<input type="text" name="calcRegistForm" th:field="*{calcNumMonth}" class="form-control"  placeholder="mm">
 		</div>
 		<div class="mb-2 form-group col-md-6">
 	  		<label for="formGroupCalcRegist" class="form-label">計算日</label>
-	  		<input type="text" name="calcRegistForm" class="form-control"  placeholder="dd"><!-- th:field="*{calcNum}" -->
+	  		<input type="text" name="calcRegistForm" th:field="*{calcNumDay}" class="form-control"  placeholder="dd">
 		</div>
 		<div class="col-md-4">
 	  		<button class="btn btn-outline-light my-4" type="submit">登録</button>	
