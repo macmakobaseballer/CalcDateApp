@@ -15,4 +15,8 @@ public interface CalcMapper {
 
 	//計算式1件登録
 	public void insertCalcOne(CalcDate calcDate);
+	
+	//計算式の1件更新
+	public void updateCalcOne(CalcDate calcDate);
+	
 }
