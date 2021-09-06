@@ -54,4 +54,9 @@ public class CalcService {
 		calcMapper.insertCalcOne(calcDate);
 	}
 	
+	//計算式の更新
+	public void updateCalcOne(CalcDate calcDate) {
+		calcMapper.updateCalcOne(calcDate);
+	}
+	
 }
