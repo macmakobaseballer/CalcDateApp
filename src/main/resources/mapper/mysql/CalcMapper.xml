@@ -11,6 +11,15 @@
 		 calc_date
 	</select>
 	
+	<select id="selectOne" resultType="calcDate">
+		SELECT 
+		 *
+		FROM
+		 calc_date
+		WHERE
+		　result_id = #{resultId}
+	</select>
+	
 	<insert id="insertCalcOne">
 		INSERT INTO calc_date(
 			calc_id,
