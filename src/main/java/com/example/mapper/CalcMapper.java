@@ -17,7 +17,7 @@ public interface CalcMapper {
 	public void insertCalcOne(CalcDate calcDate);
 	
 	//計算式1件取得
-	public List <CalcDate> selectOne(int resultId);
+	public CalcDate selectOne(int resultId);
 	
 	//計算式の1件更新
 	public void updateCalcOne(CalcDate calcDate);

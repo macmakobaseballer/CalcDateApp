@@ -55,7 +55,9 @@ public class CalcService {
 	}
 	
 	//計算式の1件取得
-	
+	public CalcDate getCalcOne(int resultId){
+		return calcMapper.selectOne(resultId);
+	}
 	
 	
 	//計算式の更新

@@ -17,7 +17,7 @@
 		FROM
 		 calc_date
 		WHERE
-		　result_id = #{resultId}
+		 result_id = #{resultId}
 	</select>
 	
 	<insert id="insertCalcOne">

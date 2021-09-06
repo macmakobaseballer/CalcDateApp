@@ -60,7 +60,7 @@
 		      <td th:text="${item.calcNumYear}+'/'+${item.calcNumMonth}+'/'+${item.calcNumDay}"></td>
 		      <td th:text="*{#temporals.format(item.resultDate,'YYYY/MM/dd')}"></td>
 		      <td>
-		      	<a class="btn btn-primary" th:href="@{'/calc/update'${item.resultId}}">
+		      	<a class="btn btn-primary" th:href="@{'/calc/update/'+${item.resultId}}">
 		      	更新
 		      	</a>
 		      </td>
