@@ -50,6 +50,7 @@
 		      <th scope="col">計算式ID</th>
 		      <th scope="col">計算式(Y/M/D)</th>
 		      <th scope="col">計算結果</th>
+		      <th scope="col"></th>
 		    </tr>
 		  </thead>
 		  <tbody>
@@ -58,6 +59,11 @@
 		      <td th:text="${item.calcId}"></td>
 		      <td th:text="${item.calcNumYear}+'/'+${item.calcNumMonth}+'/'+${item.calcNumDay}"></td>
 		      <td th:text="*{#temporals.format(item.resultDate,'YYYY/MM/dd')}"></td>
+		      <td>
+		      	<a class="btn btn-primary" th:href="@{'/calc/update'${item.resultId}}">
+		      	更新
+		      	</a>
+		      </td>
 		    </tr>
 		  </tbody>
 		</table>

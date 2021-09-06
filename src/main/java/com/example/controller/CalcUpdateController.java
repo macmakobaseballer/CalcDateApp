@@ -16,7 +16,7 @@ public class CalcUpdateController {
 	@Autowired
 	CalcService calcService;
 	
-	@GetMapping("/update")
+	@GetMapping("/update{resultId:.+}")
 	public String getCalcUpdate(@ModelAttribute CalcUpdateForm form) {
 		
 		return "calcupdate";
