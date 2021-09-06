@@ -37,6 +37,6 @@ public class CalcRegisterController {
 		//計算式の1件登録を実行
 		calcService.insertCalcOne(calcDate);
 		
-		return "redirect";
+		return "redirect:";
 	}
 }
