@@ -45,6 +45,13 @@
 		WHERE
 		  result_id = #{resultId}
 	</update>
+	
+	<delete id="deleteCalcOne">
+		DELETE FROM
+			calc_date
+		WHERE
+			result_id = #{resultId}
+	</delete>
 </mapper>
 
 	<!--  -->
