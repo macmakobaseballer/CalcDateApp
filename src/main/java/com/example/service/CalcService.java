@@ -60,10 +60,14 @@ public class CalcService {
 	}
 	
 	
-	//計算式の更新
+	//計算式の1件更新
 	public void updateCalcOne(CalcDate calcDate) {
 		calcMapper.updateCalcOne(calcDate);
 	}
 	
+	//計算式の1件削除
+	public void deleteCalcOne(int resultId) {
+		calcMapper.deleteCalcOne(resultId);
+	}
 	
 }
