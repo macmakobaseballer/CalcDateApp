@@ -8,4 +8,5 @@ public class CalcUpdateForm {
 	private int calcNumYear;
 	private int calcNumMonth;
 	private int calcNumDay;
+	private int resultId;
 }

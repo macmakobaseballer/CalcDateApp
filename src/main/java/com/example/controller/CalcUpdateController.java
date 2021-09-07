@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.entity.CalcDate;
@@ -36,10 +37,27 @@ public class CalcUpdateController {
 		//modelに登録
 		model.addAttribute("calcUpdateForm", form);
 		
+		System.out.println(form);
+		
 		return "calcupdate";
 		
 	}
 	
+	@PostMapping("/update/{resultId:.+}")
+	public String postCalcUpdate(@ModelAttribute CalcUpdateForm form, Model model) {
+		System.out.println(form);
+		
+		//formをCalcDateクラスに変換
+		CalcDate calcDate = modelMapper.map(form, CalcDate.class);
+		
+		//1件更新処理
+		calcService.updateCalcOne(calcDate);
+		
+		System.out.println(calcDate);
+		
+	return "redirect:/calc";
+		
+	}
 	
 	
 	

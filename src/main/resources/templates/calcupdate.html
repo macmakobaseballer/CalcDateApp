@@ -34,8 +34,9 @@
 	<div class="mt-4 container">
 	<div class="bg-primary p-2 text-white bg-opacity-75">
 	 <h1 class=h5>計算式更新するよ</h1>	
-	 　<form th:method="post" th:object="${calcUpdateForm}"  th:action="@{/calc/update}">　
+	 　<form th:method="post" th:object="${calcUpdateForm}"  th:action="@{'/calc/update/'+${resultId}}">　
 		 <div class="mb-2 form-group col-md-6">
+		 	<input type="hidden" th:field="*{resultId}">
 	  		<label for="formGroupCalcUpdate" class="form-label">計算式ID</label>
 	  		<input type="text" name="calcUpdateForm" th:field="*{calcId}"  class="form-control" placeholder="#Y#M#D">
 		</div>
