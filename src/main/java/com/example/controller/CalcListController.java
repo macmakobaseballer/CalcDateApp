@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -44,9 +45,6 @@ public class CalcListController {
 	public String postcalcResult(  @DateTimeFormat(pattern="yyyy/MM/dd") @ModelAttribute BaseDateForm form ,Model model) {
 		
 		
-		System.out.println(form);
-		
-		
 		//計算一覧を取得
 		List<CalcDate> calcList = calcService.getcalcAll();
 		
@@ -54,13 +52,21 @@ public class CalcListController {
 		calcList = calcService.getcalcResultAll(calcList,form.getBaseDate());
 		
 		
-		System.out.println(calcList);
-		
 		//Modelに登録
 		model.addAttribute("calcList", calcList);
 
-		//list.htmlを返す
+		//ダイレクト
 		return "list";
+	}
+	
+	@PostMapping(value="/delete/{resultId:.+}")
+	public String postDeleteOne(@PathVariable("resultId") int resultId) {
+		
+		//1件削除を実装
+		calcService.deleteCalcOne(resultId);
+
+		//リダイレクト処理
+		return"redirect:/calc";
 	}
 	
 }
