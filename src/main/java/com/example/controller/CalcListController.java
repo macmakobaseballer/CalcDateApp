@@ -59,7 +59,7 @@ public class CalcListController {
 		return "list";
 	}
 	
-	@PostMapping(value="/delete/{resultId:.+}")
+	@PostMapping("/delete/{resultId:.+}")
 	public String postDeleteOne(@PathVariable("resultId") int resultId) {
 		
 		//1件削除を実装
