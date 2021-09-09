@@ -48,8 +48,8 @@ public class CalcListController {
 		//計算一覧を取得
 		List<CalcDate> calcList = calcService.getcalcAll();
 		
-		//getcalc
-		calcList = calcService.getcalcResultAll(calcList,form.getBaseDate());
+		//ge
+		calcList = calcService.getCalcResultAll(calcList,form.getBaseDate());
 		
 		
 		//Modelに登録

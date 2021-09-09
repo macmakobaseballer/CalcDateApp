@@ -22,7 +22,7 @@ public class CalcService {
 	}
 	
 	//計算ロジックの実行メソッド
-	public List <CalcDate> getcalcResultAll(List <CalcDate> calcList ,LocalDate baseDate){
+	public List <CalcDate> getCalcResultAll(List <CalcDate> calcList ,LocalDate baseDate){
 		
 		//System.out.println(baseDate);
 		
