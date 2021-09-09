@@ -48,9 +48,8 @@ public class CalcListController {
 		//計算一覧を取得
 		List<CalcDate> calcList = calcService.getcalcAll();
 		
-		//ge
+		//getCalcResultAllメソッドを実行し、計算基準日を元に計算実行
 		calcList = calcService.getCalcResultAll(calcList,form.getBaseDate());
-		
 		
 		//Modelに登録
 		model.addAttribute("calcList", calcList);
