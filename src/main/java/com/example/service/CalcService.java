@@ -32,9 +32,10 @@ public class CalcService {
 		for( CalcDate calcDate : calcList ) {
 			
 			//計算実行
-			LocalDate resultDate = baseDate.plusYears(calcDate.getCalcNumYear());
-			resultDate = resultDate.plusMonths(calcDate.getCalcNumMonth());
-			resultDate = resultDate.plusDays(calcDate.getCalcNumDay());
+			LocalDate resultDate = 
+				baseDate.plusYears(calcDate.getCalcNumYear())
+				        .plusMonths(calcDate.getCalcNumMonth())
+				        .plusDays(calcDate.getCalcNumDay());
 			
 			//calcDatesetterでresultDateの値をセット
 			calcDate.setResultDate(resultDate);		
