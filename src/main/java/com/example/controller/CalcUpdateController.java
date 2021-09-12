@@ -4,6 +4,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,8 +46,15 @@ public class CalcUpdateController {
 	}
 	
 	@PostMapping("/update/{resultId:.+}")
-	public String postCalcUpdate(@ModelAttribute CalcUpdateForm form, Model model) {
-		System.out.println(form);
+	public String postCalcUpdate(@ModelAttribute @Validated CalcUpdateForm form,
+								 BindingResult bindingResult ,Model model) {
+		
+		//入力チェック処理
+		if(bindingResult.hasErrors()) {
+			//
+			return "calcupdate" ;
+			
+		}
 		
 		//formをCalcDateクラスに変換
 		CalcDate calcDate = modelMapper.map(form, CalcDate.class);

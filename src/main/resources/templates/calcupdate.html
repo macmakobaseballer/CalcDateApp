@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <!-- Required meta tags -->
+	 <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" href="/css/list.css">
-    <title></title>
+	<!-- CSS読込 -->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<!-- JS読込 -->
+	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
+	<title></title>
   </head>
   <body>
   	<!-- navar -->
@@ -29,38 +30,44 @@
 	  </div>
 	  <form th:method="post" th:action="@{/logout}">
 		  <button class="btn btn-outline-light my-2 my-sm-0" type="submit">ログアウト</button>
-	  </form>z  
+	  </form>
 	</nav>
 	
 	<!-- 計算式の登録フォーム -->
-	<div class="mt-4 container">
-	<div class="bg-primary p-2 text-white bg-opacity-75">
-	 <h1 class=h5>計算式更新するよ</h1>	
+	<div class="pt-4 container">
+	<div class="bg-light p-2 text-dark">
+	 <h4 class=h5>計算式更新するよ</h4>	
 	 　<form th:method="post" th:object="${calcUpdateForm}"  th:action="@{'/calc/update/'+${resultId}}">　
 		 <div class="mb-2 form-group col-md-6">
-		 	<input type="hidden" th:field="*{resultId}">
-	  		<label for="formGroupCalcUpdate" class="form-label">計算式ID</label>
-	  		<input type="text" name="calcUpdateForm" th:field="*{calcId}"  class="form-control" placeholder="#Y#M#D">
+	  		<label for="formGroupCalcUpdate" class="form-label" th:text="#{calcId}"></label>
+	  		<input type="text" th:field="*{calcId}"  class="form-control" placeholder="#Y#M#D"
+	  			  			  			   th:errorclass="is-invalid">
+	  	<div class="invalid-feedback" th:errors="*{calcId}"></div>
 		</div>
 		<div class="mb-2 form-group col-md-6">
-	  		<label for="formGroupCalcUpdate" class="form-label">計算年</label>
-	  		<input type="text" name="calcUpdateForm" th:field="*{calcNumYear}" class="form-control"  placeholder="yy">
+	  		<label for="formGroupCalcUpdate" class="form-label" th:text="#{calcNumYear}"></label>
+	  		<input type="text" th:field="*{calcNumYear}" class="form-control"  placeholder="yy"
+	  			  			   th:errorclass="is-invalid">
+	  	<div class="invalid-feedback" th:errors="*{calcNumYear}"></div>
 		</div>
 		<div class="mb-2 form-group col-md-6">
-	  		<label for="formGroupCalcUpdate" class="form-label">計算月</label>
-	  		<input type="text" name="calcUpdateForm" th:field="*{calcNumMonth}" class="form-control"  placeholder="mm">
+	  		<label for="formGroupCalcUpdate" class="form-label" th:text="#{calcNumMonth}"></label>
+	  		<input type="text" th:field="*{calcNumMonth}" class="form-control"  placeholder="mm"
+	  			   th:errorclass="is-invalid">
+	  	<div class="invalid-feedback" th:errors="*{calcNumMonth}"></div>
 		</div>
 		<div class="mb-2 form-group col-md-6">
-	  		<label for="formGroupCalcUpdate" class="form-label">計算日</label>
-	  		<input type="text" name="calcUpdateForm" th:field="*{calcNumDay}" class="form-control"  placeholder="dd">
+	  		<label for="formGroupCalcUpdate" class="form-label" th:text="#{calcNumDay}"></label>
+	  		<input type="text" th:field="*{calcNumDay}" class="form-control"  placeholder="dd"
+	  			   th:errorclass="is-invalid">
+	  	<div class="invalid-feedback" th:errors="*{calcNumDay}"></div>
 		</div>
+		<input type="hidden" th:field="*{resultId}">
 		<div class="col-md-4">
-	  		<button class="btn btn-outline-light my-4" type="submit">更新</button>	
+	  		<button class="btn btn-outline-dark my-4" type="submit">更新</button>	
 		</div>
 	 </form>
 	</div>
 	</div>
-	
-
 </body>
 </html>
