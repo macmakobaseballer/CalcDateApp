@@ -16,7 +16,7 @@ public class LoginController {
     // ホーム画面にリダイレクト 
     @PostMapping("/login")
     public String postLogin() {
-        return "redirect:/calc/list";
+        return "redirect:/calc";
     }
 }
 
