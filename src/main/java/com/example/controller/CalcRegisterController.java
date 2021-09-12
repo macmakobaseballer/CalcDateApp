@@ -4,6 +4,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,9 +31,15 @@ public class CalcRegisterController {
 	}
 	
 	@PostMapping("/register")
-	public String postCalcRegist(@ModelAttribute CalcRegistForm form , Model model) {
+	public String postCalcRegist(@ModelAttribute @Validated CalcRegistForm form , 
+								BindingResult bindingResult , Model model) {
+		//入力チェック処理
+		if(bindingResult.hasErrors()) {
+			//NG:エラー表示処理
+			return getCalcRegist(form);
+		}
 		
-		//formをCalcDateクラスに変換
+		//formをCalcDateクラスに変換		
 		CalcDate calcDate = modelMapper.map(form, CalcDate.class);
 				
 		//計算式の1件登録を実行

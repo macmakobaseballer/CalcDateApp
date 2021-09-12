@@ -39,7 +39,7 @@
 	 <h1 class=h5>日付計算するよ</h1>	
 	 <form class="form-group" th:method="post" th:object="${baseDateForm}" th:action="@{/calc}">
 		 <div class="mb-3 form-group col-md-8">
-	  		<label for="formGroupBaseDate" class="form-label">計算基準日</label>
+	  		<label for="formGroupBaseDate" class="form-label" th:text="#{baseDate}"></label>
 	  		<input type="text" class="form-control" th:field="*{baseDate}"
 	  		       th:errorclass="is-invalid">
 			<div class="invalid-feedback" th:errors="*{baseDate}"></div>
@@ -53,7 +53,7 @@
 		  <thead>
 		    <tr>
 		      <th scope="col">No.</th>
-		      <th scope="col">計算式ID</th>
+		      <th scope="col" th:text="#{calcId}"></th>
 		      <th scope="col">計算式(Y/M/D)</th>
 		      <th scope="col">計算結果</th>
 		      <th scope="col"></th>

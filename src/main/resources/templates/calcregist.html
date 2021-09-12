@@ -13,7 +13,7 @@
   <body>
   	<!-- navar -->
   	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	  <a class="navbar-brand" href="#">日付計算アプリ</a>
+	  <a class="navbar-brand" href="/calc">日付計算アプリ</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
@@ -38,20 +38,28 @@
 	 <h1 class=h5>計算式登録するよ</h1>	
 	 　<form th:method="post" th:object="${calcRegistForm}"  th:action="@{/calc/register}">　
 		 <div class="mb-2 form-group col-md-6">
-	  		<label for="formGroupCalcRegist" class="form-label">計算式ID</label>
-	  		<input type="text" name="calcRegistForm" th:field="*{calcId}"  class="form-control" placeholder="#Y#M#D">
+	  		<label for="formGroupCalcRegist" class="form-label" th:text="#{calcId}"></label>
+	  		<input type="text" th:field="*{calcId}"  class="form-control" placeholder="#Y#M#D"
+	  			   th:errorclass="is-invalid">
+	  	<div class="invalid-feedback" th:errors="*{calcId}"></div>
 		</div>
 		<div class="mb-2 form-group col-md-6">
-	  		<label for="formGroupCalcRegist" class="form-label">計算年</label>
-	  		<input type="text" name="calcRegistForm" th:field="*{calcNumYear}" class="form-control"  placeholder="yy">
+	  		<label for="formGroupCalcRegist" class="form-label" th:text="#{calcNumYear}"></label>
+	  		<input type="text" th:field="*{calcNumYear}" class="form-control"  placeholder="yy"
+	  			   th:errorclass="is-invalid">
+	  	<div class="invalid-feedback" th:errors="*{calcNumYear}"></div>
 		</div>
 		<div class="mb-2 form-group col-md-6">
-	  		<label for="formGroupCalcRegist" class="form-label">計算月</label>
-	  		<input type="text" name="calcRegistForm" th:field="*{calcNumMonth}" class="form-control"  placeholder="mm">
+	  		<label for="formGroupCalcRegist" class="form-label"th:text="#{calcNumMonth}"></label>
+	  		<input type="text" th:field="*{calcNumMonth}" class="form-control"  placeholder="mm"
+	  			   th:errorclass="is-invalid">
+	  	<div class="invalid-feedback" th:errors="*{calcNumMonth}"></div>
 		</div>
 		<div class="mb-2 form-group col-md-6">
-	  		<label for="formGroupCalcRegist" class="form-label">計算日</label>
-	  		<input type="text" name="calcRegistForm" th:field="*{calcNumDay}" class="form-control"  placeholder="dd">
+	  		<label for="formGroupCalcRegist" class="form-label" th:text="#{calcNumDay}"></label>
+	  		<input type="text" th:field="*{calcNumDay}" class="form-control"  placeholder="dd"
+	  			   th:errorclass="is-invalid">
+	  	<div class="invalid-feedback" th:errors="*{calcNumDay}"></div>
 		</div>
 		<div class="col-md-4">
 	  		<button class="btn btn-outline-light my-4" type="submit">登録</button>	
