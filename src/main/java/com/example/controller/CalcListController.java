@@ -8,6 +8,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,10 +44,12 @@ public class CalcListController {
 	}
 
 	@PostMapping
-	public String postCalcResult( @DateTimeFormat(pattern="yyyy/MM/dd") @ModelAttribute BaseDateForm form ,Model model,
-									BindingResult bindingResult) {
+	public String postCalcResult( @DateTimeFormat(pattern="yyyy/MM/dd") @ModelAttribute @Validated BaseDateForm form ,
+										BindingResult bindingResult,Model model	) {
+		System.out.println(bindingResult.hasErrors());
 		//入力チェック処理
 		if(bindingResult.hasErrors()) {
+			
 			//NGの場合：list.htmlに戻る
 			return getCalcList(form, model);
 		}

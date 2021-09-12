@@ -4,14 +4,15 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" href="/css/list.css">
+	<!-- CSS読込 -->
+	<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+	<!-- JS読込 -->
+	<script th:src="@{/webjars/jquery/jquery.min.js}" defer></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}" defer></script>
     <title></title>
   </head>
   <body>
-  	<!-- navar -->
+  	<!-- navbar -->
   	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	  <a class="navbar-brand" href="#">日付計算アプリ</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" 
@@ -36,10 +37,12 @@
 	<div class="mt-4 container">
 	<div class="bg-primary p-2 text-white bg-opacity-75">
 	 <h1 class=h5>日付計算するよ</h1>	
-	 <form th:method="post" th:object="${baseDateForm}" th:action="@{/calc}">
+	 <form class="form-group" th:method="post" th:object="${baseDateForm}" th:action="@{/calc}">
 		 <div class="mb-3 form-group col-md-8">
 	  		<label for="formGroupBaseDate" class="form-label">計算基準日</label>
-	  		<input type="text" name="baseDate" class="form-control" th:field="*{baseDate}" placeholder="yyyy/MM/dd">
+	  		<input type="text" class="form-control" th:field="*{baseDate}"
+	  		       th:errorclass="is-invalid">
+			<div class="invalid-feedback" th:errors="*{baseDate}"></div>
 		</div>
 		<div class="col-md-4">
 	  		<button class="btn btn-outline-light my-2 my-sm-0" type="submit">計算実行</button>	
@@ -79,14 +82,5 @@
 		  </tbody>
 		</table>
 	 </div>
-	 
-	
-    
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
