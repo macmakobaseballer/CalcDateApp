@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -26,7 +27,7 @@ public class CalcListController {
 	private CalcService calcService;
 	
 	@GetMapping
-	public String getcalcList(@ModelAttribute BaseDateForm form ,Model model) {
+	public String getCalcList(@ModelAttribute BaseDateForm form ,Model model) {
 		
 		//baseDateにデフォルトで値をセット
 		form.setBaseDate(LocalDate.now());
@@ -42,9 +43,15 @@ public class CalcListController {
 	}
 
 	@PostMapping
-	public String postcalcResult(  @DateTimeFormat(pattern="yyyy/MM/dd") @ModelAttribute BaseDateForm form ,Model model) {
+	public String postCalcResult( @DateTimeFormat(pattern="yyyy/MM/dd") @ModelAttribute BaseDateForm form ,Model model,
+									BindingResult bindingResult) {
+		//入力チェック処理
+		if(bindingResult.hasErrors()) {
+			//NGの場合：list.htmlに戻る
+			return getCalcList(form, model);
+		}
 		
-		
+
 		//計算一覧を取得
 		List<CalcDate> calcList = calcService.getcalcAll();
 		

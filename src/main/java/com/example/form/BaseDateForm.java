@@ -8,6 +8,7 @@ import lombok.Data;
 
 @Data
 public class BaseDateForm {
+	
 	@DateTimeFormat(pattern="yyyy/MM/dd")
 	private LocalDate baseDate ;
 
