@@ -3,16 +3,18 @@ package com.example.form;
 
 import java.time.LocalDate;
 
-import org.hibernate.validator.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 
-@SuppressWarnings("deprecation")
+
+
 @Data
 public class BaseDateForm {
 	
-	@NotBlank
+	@NotNull
 	@DateTimeFormat(pattern="yyyy/MM/dd")
 	private LocalDate baseDate ;
 
