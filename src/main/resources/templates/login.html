@@ -6,22 +6,23 @@
         <title>日付計算システム | ログイン</title>
     </head>
     <body class="text-center">
-        <div class="alert alert-danger" role="alert" th:if="${param.error}">
-            ユーザIDとパスワードが一致しません。
-        </div>
-        <div class="alert alert-primary" role="alert" th:if="${param.logout}">
+	   <div class="alert alert-primary" role="alert" th:if="${param.logout}">
             ログアウトしました。
         </div>
         <h1 class="h5 mt-2 mb-4 font-weight-normal">ログイン</h1>
+	    <p th:if="${session['SPRING_SECURITY_LAST_EXCEPTION']} != null"
+           th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}" class="text-danger">
+        ログインエラーメッセージ
+      　</p>
         <form class="w-25 mx-auto" th:action="@{/login}" method="post">
            	<label for="username" class="sr-only"></label>
            	<input class="form-control my-2" id="username"
            			type="text" name="username" placeholder="ユーザID" 
-           			required autofocus/>
+           			autofocus/>
            	<label for="password" class="sr-only"></label>
            	<input class="form-control mt-2" id="password"
            			type="password" name="password" placeholder="パスワード" 
-           			required/>
+           			/>
            	<input class="btn btn-outline-primary mt-4 mb-3" type="submit" value="Sign In"/>
         </form>
         <a th:href="@{/user/signup}">新規登録はこちら</a>
