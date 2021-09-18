@@ -12,19 +12,21 @@
   <title th:text="#{user.signup.title}"></title>
 </head>
 <body class="bg-light">
-  <form id="signup-form" method="post" action="/user/signup" class="form-signup" th:object="${signupForm}">
+  <form id="signup-form" method="post" action="/user/signup" class="form-signup w-25 mx-auto" 
+  		th:object="${signupForm}">
     <h1 class="text-center" th:text="#{user.signup.title}"></h1>
     <!-- ユーザーID -->
-    <div class="form-group">
+    <div class="form-group mt-3">
       <label for="userId" th:text="#{userId}"></label>
-      <input type="text" class="form-control" th:field="*{userId}" th:errorclass="is-invalid"/>
+      <input type="text" class="form-control" th:field="*{userId}" th:errorclass="is-invalid"
+      		 placeholder="xxxx@example.co.jp" />
       <div class="invalid-feedback" th:errors="*{userId}"></div>
     </div>
     <!-- ユーザー名 -->
     <div class="form-group">
       <label for="userName" th:text="#{userName}"></label>
-      <input type="text" class="form-control" th:field="*{userName}" th:errorclass="is-invalid"
-      		 placeholder="xxxx@ecample.co.jp" />
+      <input type="text" class="form-control" th:field="*{userName}" th:errorclass="is-invalid" />
+
       <div class="invalid-feedback" th:errors="*{userName}"></div>
     </div>
         <!-- パスワード -->
