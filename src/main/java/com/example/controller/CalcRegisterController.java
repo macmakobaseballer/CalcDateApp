@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.entity.CalcDate;
+import com.example.entity.DateFormula;
 import com.example.form.CalcRegistForm;
 import com.example.service.CalcService;
 
@@ -40,10 +40,10 @@ public class CalcRegisterController {
 		}
 		
 		//formをCalcDateクラスに変換		
-		CalcDate calcDate = modelMapper.map(form, CalcDate.class);
+		DateFormula dateFormula = modelMapper.map(form, DateFormula.class);
 				
 		//計算式の1件登録を実行
-		calcService.insertCalcOne(calcDate);
+		calcService.registerFormula(dateFormula);
 		
 		return "redirect:";
 	}

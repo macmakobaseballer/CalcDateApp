@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.entity.CalcDate;
+import com.example.entity.DateFormula;
 import com.example.mapper.CalcMapper;
 
 @Service
@@ -17,58 +17,58 @@ public class CalcService {
 	private CalcMapper calcMapper ;
 	
 	//一覧取得
-	public List <CalcDate> getcalcAll(){
-		return calcMapper.selectAll();
+	public List <DateFormula> getFormulas(){
+		return calcMapper.selectFormulas();
 	}
 	
-	//計算ロジックの実行メソッド
-	public List <CalcDate> getCalcResultAll(List <CalcDate> calcList ,LocalDate baseDate){
+	//計算の実行メソッド
+	public List <DateFormula> calculate(List <DateFormula> calcList ,LocalDate baseDate){
 		
 		//System.out.println(baseDate);
-		
-		List <CalcDate> calcResultAll = new  ArrayList<>() ;
+		//結果を入れるArrayListを定義
+		List <DateFormula> calcResults = new  ArrayList<>() ;
 				
 		
-		for( CalcDate calcDate : calcList ) {
+		for( DateFormula dateFormula : calcList ) {
 			
 			//計算実行
 			LocalDate resultDate = 
-				baseDate.plusYears(calcDate.getCalcNumYear())
-				        .plusMonths(calcDate.getCalcNumMonth())
-				        .plusDays(calcDate.getCalcNumDay());
+				baseDate.plusYears(dateFormula.getCalcNumYear())
+				        .plusMonths(dateFormula.getCalcNumMonth())
+				        .plusDays(dateFormula.getCalcNumDay());
 			
 			//calcDatesetterでresultDateの値をセット
-			calcDate.setResultDate(resultDate);		
+			dateFormula.setResultDate(resultDate);		
 		
 			//ArrayListのcalcresultAllに計算後のcalcDateを格納
-			calcResultAll.add(calcDate);
+			calcResults.add(dateFormula);
 		
 			//System.out.println(calcResultAll);
 		}
 		
-		return calcResultAll;
+		return calcResults;
 				
 	}
 	
 	//計算式の登録
-	public void insertCalcOne(CalcDate calcDate) {
-		calcMapper.insertCalcOne(calcDate);
+	public void registerFormula (DateFormula dateFormula) {
+		calcMapper.insertFormula(dateFormula);
 	}
 	
 	//計算式の1件取得
-	public CalcDate getCalcOne(int resultId){
-		return calcMapper.selectOne(resultId);
+	public DateFormula getFormula(int resultId){
+		return calcMapper.selectFormula(resultId);
 	}
 	
 	
 	//計算式の1件更新
-	public void updateCalcOne(CalcDate calcDate) {
-		calcMapper.updateCalcOne(calcDate);
+	public void updateFormula(DateFormula dateFormula) {
+		calcMapper.updateFormula(dateFormula);
 	}
 	
 	//計算式の1件削除
-	public void deleteCalcOne(int resultId) {
-		calcMapper.deleteCalcOne(resultId);
+	public void deleteFormula(int resultId) {
+		calcMapper.deleteFormula(resultId);
 	}
 	
 }

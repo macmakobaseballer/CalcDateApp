@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.entity.CalcDate;
+import com.example.entity.DateFormula;
 import com.example.form.BaseDateForm;
 import com.example.service.CalcService;
 
@@ -33,8 +33,9 @@ public class CalcListController {
 		//baseDateにデフォルトで値をセット
 		form.setBaseDate(LocalDate.now());
 		
-		//計算一覧を取得
-		List<CalcDate> calcList = calcService.getcalcAll();
+		//計算式の一覧を取得し、配列に入れる
+		
+		List<DateFormula> calcList = calcService.getFormulas();
 		
 		//Modelに登録
 		model.addAttribute("calcList", calcList);
@@ -56,10 +57,10 @@ public class CalcListController {
 		
 
 		//計算一覧を取得
-		List<CalcDate> calcList = calcService.getcalcAll();
+		List<DateFormula> calcList = calcService.getFormulas();
 		
-		//getCalcResultAllメソッドを実行し、計算基準日を元に計算実行
-		calcList = calcService.getCalcResultAll(calcList,form.getBaseDate());
+		//calculateメソッドを実行し、計算基準日を元に計算実行
+		calcList = calcService.calculate(calcList,form.getBaseDate());
 		
 		//Modelに登録
 		model.addAttribute("calcList", calcList);
@@ -69,10 +70,10 @@ public class CalcListController {
 	}
 	
 	@PostMapping("/delete/{resultId:.+}")
-	public String postDeleteOne(@PathVariable("resultId") int resultId) {
+	public String postDelete(@PathVariable("resultId") int resultId) {
 		
 		//1件削除を実装
-		calcService.deleteCalcOne(resultId);
+		calcService.deleteFormula(resultId);
 
 		//リダイレクト処理
 		return"redirect:/calc";

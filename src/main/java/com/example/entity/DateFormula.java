@@ -7,7 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import lombok.Data;
 
 @Data
-public class CalcDate {
+public class DateFormula {
 	private String calcId;
 	private int calcNumYear;
 	private int calcNumMonth;
