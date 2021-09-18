@@ -4,14 +4,14 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <!-- Mapperとxmlのマッピング -->
 <mapper namespace="com.example.mapper.CalcMapper">
-	<select id="selectAll" resultType="calcDate">
+	<select id="selectFormulas" resultType="dateFormula">
 		SELECT 
 		 *
 		FROM
 		 calc_date
 	</select>
 	
-	<select id="selectOne" resultType="calcDate">
+	<select id="selectFormula" resultType="dateFormula">
 		SELECT 
 		 *
 		FROM
@@ -20,7 +20,7 @@
 		 result_id = #{resultId}
 	</select>
 	
-	<insert id="insertCalcOne">
+	<insert id="insertFormula">
 		INSERT INTO calc_date(
 			calc_id,
 			calc_num_year,
@@ -35,7 +35,7 @@
 			)	
 	</insert>
 	
-	<update id="updateCalcOne">
+	<update id="updateFormula">
 		Update calc_date
 		SET 
 		  calc_id = #{calcId},
@@ -46,7 +46,7 @@
 		  result_id = #{resultId}
 	</update>
 	
-	<delete id="deleteCalcOne">
+	<delete id="deleteFormula">
 		DELETE FROM
 			calc_date
 		WHERE
