@@ -33,8 +33,7 @@ public class CalcListController {
 		//baseDateにデフォルトで値をセット
 		form.setBaseDate(LocalDate.now());
 		
-		//計算式の一覧を取得し、配列に入れる
-		
+		//計算式の一覧を取得し、配列を定義
 		List<DateFormula> calcList = calcService.getFormulas();
 		
 		//Modelに登録
