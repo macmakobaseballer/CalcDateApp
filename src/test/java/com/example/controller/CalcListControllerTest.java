@@ -1,6 +1,9 @@
 package com.example.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -9,9 +12,10 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -33,7 +37,7 @@ class CalcListControllerTest extends CalcListController {
 	private CalcService service;
 
 	//test対象オブジェクトの生成
-	@Autowired
+	@InjectMocks
 	private CalcListController target;	 
 	
 	//前処理
@@ -41,6 +45,7 @@ class CalcListControllerTest extends CalcListController {
 	public void setup() throws Exception {
 		//MockMVCにテスト対象クラスを設定
 		sut = MockMvcBuilders.standaloneSetup(target).build();
+		MockitoAnnotations.openMocks(this);
 	}
 	
 
@@ -68,13 +73,13 @@ class CalcListControllerTest extends CalcListController {
 	
 	@Test
 	public void calcページで計算基準日を入力して計算実行をクリックすると計算サービスが呼ばれること() throws Exception {
-		sut.perform(post("/calc").param( "baseDate", "2021/09/20"))
+		sut.perform(post("/calc").param( "baseDate", "2021/09/26"))
 				.andExpect(status().isOk())
 				.andExpect(view().name("list"))
 				.andExpect(model().hasNoErrors());
 
 				
-		//verify(service, times(1)).calculate(any(), any());
+		verify(service, times(1)).calculate(any(), any());
 	}
 
 	@Test
