@@ -101,14 +101,11 @@ class CalcListControllerTest extends CalcListController {
 	}
 
 
-//	@Test
-//	void testPostCalcResult() {
-//		fail("まだ実装されていません");
-//	}
-//
-//	@Test
-//	void testPostDelete() {
-//		fail("まだ実装されていません");
-//	}
+	@Test
+	public void 削除ボタンをクリックすると1件削除サービスが実行されリダイレクト処理がされること()throws Exception {
+		sut.perform(post("/calc/delete/1").param("resultId", "1"))
+			.andExpect(status().is(302))
+			.andExpect(redirectedUrl("/calc"));
+	}
 
 }
