@@ -47,7 +47,7 @@ public class CalcUpdateController {
 	
 	@PostMapping("/update/{resultId:.+}")
 	public String postCalcUpdate(@ModelAttribute @Validated CalcUpdateForm form,
-								 BindingResult bindingResult ,Model model) {
+								BindingResult bindingResult ,Model model) {
 		
 		//入力チェック処理
 		if(bindingResult.hasErrors()) {
@@ -62,7 +62,7 @@ public class CalcUpdateController {
 		//1件更新処理
 		calcService.updateFormula(dateFormula);
 		
-		System.out.println(dateFormula);
+		//System.out.println(dateFormula);
 	
 	//トップページへリダイレクト	
 	return "redirect:/calc";
