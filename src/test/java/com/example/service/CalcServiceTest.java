@@ -10,6 +10,7 @@ import com.example.entity.DateFormula;
 import com.example.mapper.CalcMapper;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.mockito.Mock;
@@ -42,7 +43,7 @@ public class CalcServiceTest {
                 ,"0,1,0,2021-09-25,2021-10-25"  //翌月
                 ,"0,0,1,2021-09-25,2021-09-26"})//翌日
 
-    void 計算基準日に対し年月日の加減算処理を実行し期待値通りの結果が得られること(int calcNumYear, int calcNumMonth, int calcNumDay ,LocalDate baseDate , LocalDate expected ) {
+    void 計算基準日に対し年月日の加減算処理を実行し期待値通りの結果を得られること(int calcNumYear, int calcNumMonth, int calcNumDay ,LocalDate baseDate , LocalDate expected ) {
         
         List <DateFormula> testList = new ArrayList<>();
 
@@ -52,14 +53,47 @@ public class CalcServiceTest {
         formula.setCalcNumDay(calcNumDay);
         testList.add(formula);
 
-        sut.calculate(testList, baseDate );
+        sut.calculate(testList, baseDate);
         
+        //実測値の定義
         LocalDate actual = formula.getResultDate(); 
 
         //比較
         assertEquals( expected , actual );
     
     }
+
+    //全件取得メソッドのテスト
+    //定義したMockオブジェクトからの戻り値を定義
+        //Entityのインスタンス化(List)
+        //listに追加
+        //setterで値を定義（なんか上と共通処理な気もする。。）
+    //テストメソッド
+    //getterで値が返ってくることを確認する？？（たぶん違う気がする。。）
+        //Listが返ってくることを確認する？？
+    
+    @Test
+    void 全件取得のメソッドを実行し戻り値として一覧取得できること () throws Exception {
+
+
+    }
+
+
+    //1件取得メソッドのテスト
+    //定義したMockオブジェクトからの戻り値を定義
+    //getterとsetterで値が返ってくることを確認する？？
+    //Listが返ってくることを確認する？？（←たぶんこっち）
+
+
+
+    // 削除メソッドのテスト
+    // メソッドの戻り値はない
+    // Mapperクラスのメソッドを呼び出せることを確認？
+
+
+    // 削除メソッドのテスト
+    // メソッドの戻り値はない
+    // Mapperクラスのメソッドを呼び出せることを確認？
 
     // @Test
     // void testDeleteFormula() {
