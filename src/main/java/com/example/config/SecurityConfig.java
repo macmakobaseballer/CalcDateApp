@@ -54,6 +54,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		    .defaultSuccessUrl("/calc" , true);//成功後の遷移先
 		
 
+		//h2consoleを使用可能（SpringSecurityを入れている場合consoleで接続を拒否される）
+		http.headers().frameOptions().disable();
 
 		//CSRF処理の無効化（一時）
 		http.csrf().disable();
