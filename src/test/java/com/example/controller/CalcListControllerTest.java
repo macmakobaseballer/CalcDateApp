@@ -29,7 +29,7 @@ import com.example.service.CalcService;
 class CalcListControllerTest extends CalcListController {
 
 	//MockMVCオブジェクトの生成 
-	private MockMvc sut;
+	private MockMvc mockMvc;
 	
 
 	//ServiceクラスをMockオブジェクト化
@@ -38,20 +38,20 @@ class CalcListControllerTest extends CalcListController {
 
 	//test対象オブジェクトの生成
 	@InjectMocks
-	private CalcListController target;	 
+	private CalcListController sut;	 
 	
 	//前処理
 	@BeforeEach
 	public void setup() throws Exception {
 		//MockMVCにテスト対象クラスを設定
-		sut = MockMvcBuilders.standaloneSetup(target).build();
+		mockMvc = MockMvcBuilders.standaloneSetup(sut).build();
 		MockitoAnnotations.openMocks(this);
 	}
 	
 
 	@Test
 	public void GETリクエストでHTTPステータス200が返りviewとしてlistが返ること() throws Exception {
-		sut.perform(get("/calc"))
+		mockMvc.perform(get("/calc"))
 		    //HTTPステータスが200：OKとなること
 			.andExpect(status().isOk())
 		    //viewとしてlistが返ってくること
@@ -61,7 +61,7 @@ class CalcListControllerTest extends CalcListController {
 
 	@Test
 	public void GETリクエストで計算基準日に本日日付が初期値でセットされていること() throws Exception {
-		MvcResult result = sut.perform(get("/calc"))
+		MvcResult result = mockMvc.perform(get("/calc"))
 							.andReturn();	
 		
 		//modelに詰められたbaseDateFormの値を取得
@@ -73,7 +73,7 @@ class CalcListControllerTest extends CalcListController {
 	
 	@Test
 	public void calcページで計算基準日を入力して計算実行をクリックすると計算サービスが呼ばれること() throws Exception {
-		sut.perform(post("/calc").param( "baseDate", "2021/09/26"))
+		mockMvc.perform(post("/calc").param( "baseDate", "2021/09/26"))
 				.andExpect(status().isOk())
 				.andExpect(view().name("list"))
 				.andExpect(model().hasNoErrors());
@@ -84,7 +84,7 @@ class CalcListControllerTest extends CalcListController {
 
 	@Test
 	public void calcページで計算基準日をnullにして計算実行をクリックするとmodelがエラーとなり画面が返ること() throws Exception {
-		sut.perform(post("/calc").param( "baseDate", ""))
+		mockMvc.perform(post("/calc").param( "baseDate", ""))
 				.andExpect(status().isOk())
 				.andExpect(model().hasErrors())
 				.andExpect(view().name("list"));
@@ -93,7 +93,7 @@ class CalcListControllerTest extends CalcListController {
 
 	@Test
 	public void calcページで計算基準日を不正な形式にして計算実行をクリックするとmodelがエラーとなり画面が返ること() throws Exception {
-		sut.perform(post("/calc").param( "baseDate", "2021-09-20"))
+		mockMvc.perform(post("/calc").param( "baseDate", "2021-09-20"))
 				.andExpect(status().isOk())
 				.andExpect(model().hasErrors())
 				.andExpect(view().name("list"));
@@ -103,9 +103,9 @@ class CalcListControllerTest extends CalcListController {
 
 	@Test
 	public void 削除ボタンをクリックすると1件削除サービスが実行されリダイレクト処理がされること()throws Exception {
-		sut.perform(post("/calc/delete/1").param("resultId", "1"))
-			.andExpect(status().is(302))
-			.andExpect(redirectedUrl("/calc"));
+		mockMvc.perform(post("/calc/delete/1").param("resultId", "1"))
+				.andExpect(status().is(302))
+				.andExpect(redirectedUrl("/calc"));
 	}
 
 }
