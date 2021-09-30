@@ -1,5 +1,6 @@
 package com.example.mapper;
 
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import java.util.List;
@@ -21,7 +22,7 @@ public class CalcMapperTest {
     private CalcMapper sut;
 
     @Test
-    public void 全件検索して計算式ををDBから3件取得できること () throws Exception{
+    public void 全件検索して計算式ををDBから全件取得できること () throws Exception{
         List <DateFormula> actual = sut.selectFormulas();
         
         assertEquals(actual.size(),3);
@@ -105,5 +106,3 @@ public class CalcMapperTest {
     }
 
 }
-
-
