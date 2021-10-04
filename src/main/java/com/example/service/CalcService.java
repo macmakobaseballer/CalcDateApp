@@ -34,8 +34,8 @@ public class CalcService {
 			//計算実行
 			LocalDate resultDate = 
 				baseDate.plusYears(dateFormula.getCalcNumYear())
-				        .plusMonths(dateFormula.getCalcNumMonth())
-				        .plusDays(dateFormula.getCalcNumDay());
+						.plusMonths(dateFormula.getCalcNumMonth())
+						.plusDays(dateFormula.getCalcNumDay());
 			
 			//calcDatesetterでresultDateの値をセット
 			dateFormula.setResultDate(resultDate);		

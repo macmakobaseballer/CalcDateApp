@@ -1,6 +1,8 @@
 package com.example.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -74,7 +76,7 @@ public class CalcServiceTest {
     
     @Test
     void 全件取得のメソッドを実行し戻り値として一覧取得できること () throws Exception {
-        //Mock化し他サービスを呼び出し、仮の戻り値を設定
+        //Mock化したサービスを呼び出し、仮の戻り値を設定
         when(calcMapper.selectFormulas()).thenReturn(List.of(
                 setUpFormula(1,"Y1M1",1,1,0),
                 setUpFormula(2,"M1D1",0,1,1),
@@ -85,11 +87,9 @@ public class CalcServiceTest {
         
         //assertion
         assertEquals(3,actual.size());
+
+        //メソッドの呼び出し回数の検証
         verify(calcMapper,times(1)).selectFormulas();
-
-
-
-
 
     }
 
@@ -98,32 +98,44 @@ public class CalcServiceTest {
     //定義したMockオブジェクトからの戻り値を定義
     //getterとsetterで値が返ってくることを確認する？？
     //Listが返ってくることを確認する？？（←たぶんこっち）
-
-
-
-    // 削除メソッドのテスト
-    // メソッドの戻り値はない
-    // Mapperクラスのメソッドを呼び出せることを確認？
-
-
-    // 削除メソッドのテスト
-    // メソッドの戻り値はない
-    // Mapperクラスのメソッドを呼び出せることを確認？
-
-    // @Test
-    // void testDeleteFormula() {
+    @Test
+    void 一件取得のメソッドを実行し戻り値として一件対象データを取得できること () throws Exception{
+        //Mock化したサービスを呼び出し、仮の戻り値を設定
+        when(calcMapper.selectFormula(1)).thenReturn(
+            setUpFormula(1,"Y1M1",1,1,0));
         
-    // }
+        //テスト対象メソッド
+        DateFormula actual = sut.getFormula(1);
 
-    // @Test
-    // void testRegisterFormula() {
+        //assertion
+        assertEquals(1,actual.getResultId());
+        assertEquals("Y1M1",actual.getCalcId());
+        assertEquals(1,actual.getCalcNumYear());
+        assertEquals(1,actual.getCalcNumMonth());
+        assertEquals(0,actual.getCalcNumDay());
+        //メソッドの呼び出し回数の検証
+        verify(calcMapper,times(1)).selectFormula(1);
+    }
 
-    // }
 
-    // @Test
-    // void testUpdateFormula() {
 
-    // }
+    // 削除メソッドのテスト
+    // メソッドの戻り値はない
+    // Mapperクラスのメソッドを呼び出せることを確認
+    @Test
+    void 一見削除のメソッドを実行し削除メソッドを呼び出せること () throws Exception{
+        //Mock化した戻り値のないメソッドの振る舞いを定義
+        doNothing().when(calcMapper).deleteFormula(anyInt());
+        
+        //検証対象メソッドの実行
+        sut.deleteFormula(anyInt());
+        //メソッドの呼び出し回数の検証
+        verify(calcMapper,times(1)).deleteFormula(anyInt());
+
+    }
+
+
+
     //今回のテストの計算式を設定するメソッド
     private DateFormula setUpFormula(int resultId ,String calcId,int calcNumYear, int calcNumMonth, int calcNumDay) {
         DateFormula formula = new DateFormula();
